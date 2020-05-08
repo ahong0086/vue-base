@@ -1,0 +1,142 @@
+.zoom-enter-active,
+.zoom-leave-active {
+    transition: all 0.3s;
+}
+
+.zoom-enter,
+.zoom-leave-to {
+    zoom: 0.7;
+}
+
+
+.slide-left-enter-active {
+    animation-name: slide-left-in;
+    animation-duration: .3s;
+    position: absolute;
+    width: 100%;
+}
+
+.slide-left-leave-active {
+    animation-name: slide-left-out;
+    animation-duration: 0.3s;
+    position: absolute;
+    width: 100%;
+}
+
+.slide-right-enter-active {
+    animation-name: slide-right-in;
+    animation-duration: .3s;
+    position: absolute;
+    width: 100%;
+}
+
+.slide-right-leave-active {
+    animation-name: slide-right-out;
+    animation-duration: 0.3s;
+    position: absolute;
+    width: 100%;
+}
+
+@keyframes slide-left-in {
+    0% {
+        /*transform: translate3d(100%, 0, 0);*/
+        margin-left: 100%;
+    }
+    100% {
+        margin-left: 0;
+    }
+}
+
+@keyframes slide-left-out {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -100%;
+    }
+}
+
+@keyframes slide-right-in {
+    0% {
+        margin-left: -100%;
+    }
+    100% {
+        margin-left: 0;
+    }
+}
+
+@keyframes slide-right-out {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: 100%;
+    }
+}
+
+
+.slide-up-enter-active {
+    animation-name: slide-up-in;
+    animation-duration: .3s;
+    position: absolute;
+    width: 100%;
+}
+
+.slide-up-leave-active {
+    animation-name: slide-up-out;
+    animation-duration: 0.3s;
+    position: absolute;
+    width: 100%;
+}
+
+.slide-down-enter-active {
+    animation-name: slide-down-in;
+    animation-duration: .3s;
+    position: absolute;
+    width: 100%;
+}
+
+.slide-down-leave-active {
+    animation-name: slide-down-out;
+    animation-duration: 0.3s;
+    position: absolute;
+    width: 100%;
+}
+
+
+@keyframes slide-up-in {
+    0% {
+        /*transform: translate3d(100%, 0, 0);*/
+        margin-top: 100%;
+    }
+    100% {
+        margin-top: 0;
+    }
+}
+
+@keyframes slide-up-out {
+    0% {
+        margin-top: 0;
+    }
+    100% {
+        margin-top: -100%;
+    }
+}
+
+@keyframes slide-down-in {
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 0;
+    }
+}
+
+@keyframes slide-down-out {
+    0% {
+        margin-top: 0;
+    }
+    100% {
+        margin-top: 100%;
+    }
+}

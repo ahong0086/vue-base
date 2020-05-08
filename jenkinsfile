@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    stages {
+        stage('Initialize') {
+            steps {
+                sh '''
+                    echo pwd
+                    echo ~
+                '''
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh '''
+                    proj=cx-gaming
+                    host=182.16.25.170
+                    html=/opt/webapps/html
+                    # 打包
+                    echo "package ${proj}"
+                    npm install
+                    npm run build
+                    # 重命名
+                    rm -rf $proj
+                    mv dist $proj
+                    zip -r $proj.zip $proj
+                    # 删除文件
+                    rm -rf $proj
+                    # 上传文件
+                    echo "upload $proj to $host"
+                    scp -P 52222 -v -o StrictHostKeyChecking=no $proj.zip root@$host:$html/$proj.zip
+                    # 发布
+                    ssh -p 52222 root@$host "cd $html && rm -rf $proj && unzip $proj.zip"
+                    echo "success"
+                '''
+            }
+        }
+    }
+}

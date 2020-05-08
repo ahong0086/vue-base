@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>天天红包</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" href="./favicon.ico">
+    <style>
+        .loading .mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 5000;
+            background: #7575753b;
+        }
+
+        .loading .animation {
+            position: fixed;
+            top: 45%;
+            left: 50%;
+            margin-left: -4em;
+            z-index: 6000;
+
+            padding: 0 2em;
+            background: #adadad3b;
+            border-radius: 10px;
+        }
+    </style>
+    <style type="text/css">
+        @keyframes lds-ellipsis3 {
+
+            0%,
+            25% {
+                left: 32px;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                left: 32px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            75% {
+                left: 100px;
+            }
+
+            100% {
+                left: 168px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @-webkit-keyframes lds-ellipsis3 {
+
+            0%,
+            25% {
+                left: 32px;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                left: 32px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            75% {
+                left: 100px;
+            }
+
+            100% {
+                left: 168px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes lds-ellipsis2 {
+            0% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            25%,
+            100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+        }
+
+        @-webkit-keyframes lds-ellipsis2 {
+            0% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            25%,
+            100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+        }
+
+        @keyframes lds-ellipsis {
+            0% {
+                left: 32px;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            25% {
+                left: 32px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            50% {
+                left: 100px;
+            }
+
+            75% {
+                left: 168px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            100% {
+                left: 168px;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+        }
+
+        @-webkit-keyframes lds-ellipsis {
+            0% {
+                left: 32px;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            25% {
+                left: 32px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            50% {
+                left: 100px;
+            }
+
+            75% {
+                left: 168px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            100% {
+                left: 168px;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+        }
+
+        .lds-ellipsis {
+            position: relative;
+        }
+
+        .lds-ellipsis > div {
+            position: absolute;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+        }
+
+        .lds-ellipsis div > div {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f00;
+            position: absolute;
+            top: 100px;
+            left: 32px;
+            -webkit-animation: lds-ellipsis 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+            animation: lds-ellipsis 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+        }
+
+        .lds-ellipsis div:nth-child(1) div {
+            -webkit-animation: lds-ellipsis2 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+            animation: lds-ellipsis2 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+            background: #3ba4ec;
+        }
+
+        .lds-ellipsis div:nth-child(2) div {
+            -webkit-animation-delay: -0.85s;
+            animation-delay: -0.85s;
+            background: #ffdaa3;
+        }
+
+        .lds-ellipsis div:nth-child(3) div {
+            -webkit-animation-delay: -0.425s;
+            animation-delay: -0.425s;
+            background: #ef6262;
+        }
+
+        .lds-ellipsis div:nth-child(4) div {
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+            background: #ff7d94;
+        }
+
+        .lds-ellipsis div:nth-child(5) div {
+            -webkit-animation: lds-ellipsis3 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+            animation: lds-ellipsis3 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+            background: #3ba4ec;
+        }
+
+        .lds-ellipsis {
+            width: 65px !important;
+            height: 65px !important;
+            -webkit-transform: translate(-32.5px, -32.5px) scale(0.325) translate(32.5px, 32.5px);
+            transform: translate(-32.5px, -32.5px) scale(0.325) translate(32.5px, 32.5px);
+        }
+    </style>
+    <script>
+        // 保存跳转referrer
+        if (!document.referrer.includes(location.host)) {
+            sessionStorage.setItem('referrer', document.referrer)
+        }
+
+        // 移动端检查
+        function checkIsMobile() {
+            var flag = false;
+
+            if (window.location.toString().indexOf('pref=padindex') != -1) {
+                flag = false;
+            } else {
+                var regular = /MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/;
+                var regular1 = /AppleWebKit.*Mobile/i;
+                var regular2 = /Android|Windows Phone|webOS|iPhone|iPod|BlackBerry/i;
+                if (regular1.test(navigator.userAgent) || (regular.test(navigator.userAgent))) {
+                    if (window.location.href.indexOf("?mobile") < 0) {
+                        flag = true;
+                    }
+                }
+            }
+            return flag;
+        }
+
+        // token登录判断
+        let token = (new RegExp('[?|&]token=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ''])[1];
+        let sessionToken = sessionStorage.getItem('x-session-token') || sessionStorage.getItem('token');
+        //设备判断
+        let device = (new RegExp('[?|&]loginSrc=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ''])[1];
+        if (token || sessionToken) {
+            sessionStorage.setItem('token', atob(decodeURIComponent(token)) || sessionToken)
+            if (device) {
+                sessionStorage.setItem("_device_", device);
+                switch (device) {
+                    case '0':
+                        location.href = 'pc.html';
+                        break;
+                    case '1':
+                    case '2':
+                    case '3':
+                        location.href = 'mobile.html';
+                        break;
+                }
+            } else {
+                //没带设备参数，只能前端判断
+                if (checkIsMobile()) {
+                    location.href = 'mobile.html';
+                    sessionStorage.setItem("_device_", 1)
+                } else {
+                    location.href = 'pc.html';
+                    sessionStorage.setItem("_device_", 0)
+                }
+            }
+        } else {
+            location.href = 'login.html';
+        }
+    </script>
+</head>
+
+<body>
+<div id="app">
+    <div class="loading">
+        <div v-if="count > 0">
+            <div class="mask"></div>
+            <div class="animation">
+                <div class="lds-css ng-scope">
+                    <div style="width:100%;height:100%" class="lds-ellipsis">
+                        <div>
+                            <div></div>
+                        </div>
+                        <div>
+                            <div></div>
+                        </div>
+                        <div>
+                            <div></div>
+                        </div>
+                        <div>
+                            <div></div>
+                        </div>
+                        <div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- built files will be auto injected -->
+</body>
+
+</html>
